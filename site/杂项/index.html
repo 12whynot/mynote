@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>SSH服务的开启 - My Docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "SSH\u670d\u52a1\u7684\u5f00\u542f";
+        var mkdocs_page_input_path = "\u6742\u9879.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Welcome to MkDocs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../2024-01-16/">2024 01 16</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../C%2B%2B%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/">C++内存布局</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Freertos%20API/">Freertos API</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../GCC%E7%BC%96%E8%AF%91%E5%99%A8%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/">GCC编译器使用记录</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8%E4%B8%AD%E6%96%AD%E4%BD%BF%E7%94%A8/">Linux驱动中断使用</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../NFS%E7%9A%84%E6%90%AD%E5%BB%BA/">NFS的搭建</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Samba%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/">Samba使用记录</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Vim%E4%BD%BF%E7%94%A8/">Vim使用</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../framebuffer%E6%A1%86%E6%9E%B6%E4%B8%8BSPI%E5%B1%8F%E7%9A%84%E9%A9%B1%E5%8A%A8%E7%A4%BA%E4%BE%8B/">framebuffer框架下SPI屏的驱动示例</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Linux常用命令</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../%E5%B8%B8%E8%A7%81repo%26git%E6%93%8D%E4%BD%9C/">常见repo&git操作</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../%E5%BC%82%E6%AD%A5IO/">select</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../%E6%89%93%E5%BC%80%E3%80%81%E8%AF%BB%E3%80%81%E5%86%99%E5%87%BD%E6%95%B0/">系统调用（linux）</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">SSH服务的开启</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#tftp">TFTP服务开启</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_1">配网</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#vscode">VSCODE快速说明</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ld_library_path">有环境变量LD_LIBRARY_PATH指定的路径</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#gdb">GDB</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#makefile">Makefile静态模式</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Linux驱动</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/Framebuffer%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/">Framebuffer驱动框架</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/Linux%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/">1、 框架模板</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/Platform%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/">Platform驱动框架</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/SPI%26%26IIC%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/">SPI&&IIC驱动框架</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/%E5%B8%B8%E8%A7%81%E7%9A%84OF%E5%87%BD%E6%95%B0%E8%AE%B0%E5%BD%95/">常见的OF函数记录</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/%E8%AE%BE%E5%A4%87%E6%A0%91%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%85%B6%E8%AF%AD%E6%B3%95/">设备树介绍及其语法</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">SSH服务的开启</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h1 id="ssh">SSH服务的开启</h1>
+<ul>
+<li>安装SSH服务
+    <code>sudo apt-get install openssh-server</code></li>
+<li>检查服务是否启动
+    <code>sudo service ssh start</code></li>
+<li>禁止ssh
+    <code>sudo systemctl disable --now ssh</code></li>
+<li>开启ssh
+    <code>sudo systemctl enable --now ssh</code></li>
+</ul>
+<h2 id="tftp">TFTP服务开启</h2>
+<ul>
+<li>安装xinetd
+    <code>sudo apt-get install xinetd</code></li>
+<li>安装 tftp-hpa 和 tftpd-hpa 服务程序 
+    <code>sudo apt-get install tftp-hpa tftpd-hpa</code></li>
+<li>修改 tftp 目录为 TFTP 服务器工作目录
+    <code>sudo vi /etc/default/tftpd-hpa</code>
+修改成如下</li>
+</ul>
+<pre><code>    /etc/default/tftpd-hpa
+
+    TFTP_USERNAME=&quot;tftp&quot;
+    TFTP_DIRECTORY=&quot;/home/whynot/samba/out&quot;
+    TFTP_ADDRESS=&quot;:69&quot;
+    TFTP_OPTIONS=&quot;--secure&quot;
+</code></pre>
+<ul>
+<li>配置/etc/ xinetd.d/tftp 文件，没有就新建</li>
+</ul>
+<pre><code>sudo vi /etc/xinetd.d/tftp
+</code></pre>
+<p>修改成如下</p>
+<pre><code>servicetftp
+{
+    socket_type = dgram
+
+    wait = yes
+
+    disable = no
+
+    user = root
+
+    protocol = udp
+
+    server = /usr/sbin/in.tftpd
+
+    server_args = -s /home/whynot/samba/out -c
+
+    #log_on_success += PID HOST DURATION
+
+    #log_on_failure += HOST
+
+    per_source = 11
+
+    cps =100 2
+
+    flags =IPv4
+
+}
+</code></pre>
+<ul>
+<li>重启 tftpd-hpa xinetd</li>
+</ul>
+<pre><code>sudo service tftpd-hpa restart
+
+sudo service xinetd restart
+</code></pre>
+<h3 id="_1">配网</h3>
+<pre><code>    //配置IP地址，子网掩码
+    ifconfig eth1 192.168.x.x broadcast 192.168.1.255 netmask 255.255.255.0
+
+    ifconfig eth1 up
+
+    ifconfig eth1 down
+
+    //配置路由表
+    1.添加一条路由：route add -net destIP netmask 网关地址 dev 网卡
+    route add -net 192.168.60.11 netmask 192.168.60.1 dev ens192
+
+    2.删除一条路由：route del -net dest_IP netmask 网关 dev 网卡
+    route del -net 192.168.60.11 netmask 192.168.60.1 dev ens192
+
+    //开启主机路由转发功能（把主机当路由器）
+    echo 1&gt; /proc/sys/net/ipv4/ip_forward
+
+</code></pre>
+<h3 id="vscode">VSCODE快速说明</h3>
+<ul>
+<li>安装插件<strong>koroFileHeader</strong></li>
+<li>在setting.json文件加入如下配置</li>
+</ul>
+<pre><code>    &quot;fileheader.configObj&quot;: { //快速添加文件头部注释和函数注释
+
+        &quot;createFileTime&quot;: true, // 设置为true则为文件新建时候作为date，否则注释生成时间为date
+
+        &quot;autoAdd&quot;: true, // 自动生成注释
+
+        &quot;annotationStr&quot;: {
+
+            &quot;head&quot;: &quot;/*&quot;,
+
+            &quot;middle&quot;: &quot; * @&quot;,
+
+            &quot;end&quot;: &quot; */&quot;,
+
+            &quot;use&quot;: true // 设置自定义注释可用
+
+        },
+
+    },
+
+    &quot;fileheader.cursorMode&quot;: { // 快速注释函数 ctrl+alt+t
+
+        &quot;description&quot;: &quot;&quot;, // 函数描述
+
+        &quot;param &quot;: &quot;&quot;, // 函数参数
+
+        &quot;return&quot;: &quot;&quot;, // 函数输出
+
+        &quot;Author&quot;: &quot;fs01&quot;, // 作者
+
+        &quot;Date&quot;: &quot;Do not edit&quot;, // 创建时间
+
+        &quot;LastEditTime&quot;: &quot;Do not edit&quot;, // 最后一次修改的时间
+
+        &quot;LastEditors&quot;: &quot;fs01&quot; // 修改人员
+
+    },
+
+    &quot;fileheader.customMade&quot;: { // 快速注释文件头部 ctrl+alt+i
+
+        &quot;Description&quot;: &quot;&quot;, // 文件描述
+
+        &quot;Author&quot;: &quot;fs01&quot;, // 作者
+
+        &quot;Date&quot;: &quot;Do not edit&quot;, // 创建时间
+
+        &quot;LastEditTime&quot;: &quot;Do not edit&quot;, // 最后一次修改的时间
+
+        &quot;LastEditors&quot;: &quot;fs01&quot; // 修改人员
+
+    }
+</code></pre>
+<h3 id="ld_library_path">有环境变量LD_LIBRARY_PATH指定的路径</h3>
+<pre><code>export LD_LIBRARY_PATH=$LD_LIBRARY_PATH/mnt/extsd
+</code></pre>
+<p>注意：LD_LIBRARY_PATH用":"分隔路径</p>
+<h3 id="gdb">GDB</h3>
+<p>让复杂数据显示更直观，eg:结构体</p>
+<pre><code>set print pretty on
+</code></pre>
+<p>打印数组索引</p>
+<pre><code>set print array-indexes on
+</code></pre>
+<p>当需要查看一段连续内存空间的值的时间，可以使用GDB的“@”操作符，“@”的左边是第一个内存地址，“@”的右边则是想查看内存的长度。</p>
+<p>int <em>array = (int </em>) malloc (len * sizeof (int));</p>
+<p>在GDB调试过程中这样显示出这个动态数组的值：</p>
+<p>p *array@len</p>
+<p>示例：</p>
+<p>(gdb) print <em>p@10
+$1 = "\000\001\002\003\004\005\006\a\b\t"
+(gdb) print </em>(char<em>)p@10
+$2 = "\000\001\002\003\004\005\006\a\b\t"
+(gdb) print </em>(int*)p@10
+$3 = {50462976, 117835012, 2312, 0, 0, 0, 1041, 0, 540090416, 540221490}
+(gdb) </p>
+<h3 id="makefile">Makefile静态模式</h3>
+<p>静态模式可以更加容易地定义多目标的规则，可以让我们的规则变得更加的有弹性和灵活。我们还是先来看一下语法：</p>
+<pre><code>&lt;targets&gt;: &lt;target-pattern&gt;: &lt;prereq-patterns &gt;  
+　　&lt;commands&gt;  
+...
+</code></pre>
+<p>如果我们的target-parrtern定义成“%.o”，意思是我们的target集合中都是以“.o”结尾的，而如果我们的prereq-parrterns定义成“%.c”，意思是对target-parrtern所形成的目标集进行二次定义，其计算方法是，取target-parrtern模式中的“%”（也就是去掉了[.o]这个结尾），并为其加上[.c]这个结尾，形成的新集合。所以，我们的“目标模式”或是“依赖模式”中都应该有“%”这个字符。</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../%E6%89%93%E5%BC%80%E3%80%81%E8%AF%BB%E3%80%81%E5%86%99%E5%87%BD%E6%95%B0/" class="btn btn-neutral float-left" title="系统调用（linux）"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Linux%E9%A9%B1%E5%8A%A8/Framebuffer%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/" class="btn btn-neutral float-right" title="Framebuffer驱动框架">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../%E6%89%93%E5%BC%80%E3%80%81%E8%AF%BB%E3%80%81%E5%86%99%E5%87%BD%E6%95%B0/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../Linux%E9%A9%B1%E5%8A%A8/Framebuffer%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

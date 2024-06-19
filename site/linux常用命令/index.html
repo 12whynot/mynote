@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Linux常用命令 - My Docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Linux\u5e38\u7528\u547d\u4ee4";
+        var mkdocs_page_input_path = "linux\u5e38\u7528\u547d\u4ee4.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Welcome to MkDocs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../2024-01-16/">2024 01 16</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../C%2B%2B%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/">C++内存布局</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Freertos%20API/">Freertos API</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../GCC%E7%BC%96%E8%AF%91%E5%99%A8%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/">GCC编译器使用记录</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8%E4%B8%AD%E6%96%AD%E4%BD%BF%E7%94%A8/">Linux驱动中断使用</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../NFS%E7%9A%84%E6%90%AD%E5%BB%BA/">NFS的搭建</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Samba%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/">Samba使用记录</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Vim%E4%BD%BF%E7%94%A8/">Vim使用</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../framebuffer%E6%A1%86%E6%9E%B6%E4%B8%8BSPI%E5%B1%8F%E7%9A%84%E9%A9%B1%E5%8A%A8%E7%A4%BA%E4%BE%8B/">framebuffer框架下SPI屏的驱动示例</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Linux常用命令</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../%E5%B8%B8%E8%A7%81repo%26git%E6%93%8D%E4%BD%9C/">常见repo&git操作</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../%E5%BC%82%E6%AD%A5IO/">select</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../%E6%89%93%E5%BC%80%E3%80%81%E8%AF%BB%E3%80%81%E5%86%99%E5%87%BD%E6%95%B0/">系统调用（linux）</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../%E6%9D%82%E9%A1%B9/">SSH服务的开启</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Linux驱动</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/Framebuffer%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/">Framebuffer驱动框架</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/Linux%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/">1、 框架模板</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/Platform%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/">Platform驱动框架</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/SPI%26%26IIC%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/">SPI&&IIC驱动框架</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/%E5%B8%B8%E8%A7%81%E7%9A%84OF%E5%87%BD%E6%95%B0%E8%AE%B0%E5%BD%95/">常见的OF函数记录</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/%E8%AE%BE%E5%A4%87%E6%A0%91%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%85%B6%E8%AF%AD%E6%B3%95/">设备树介绍及其语法</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Linux常用命令</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <ul>
+<li>
+<p>帮助  </p>
+<ul>
+<li>
+<p>man 命令  </p>
+<ul>
+<li>
+<p>Linux命令  </p>
+<ul>
+<li>
+<p>磁盘管理命令  </p>
+<ul>
+<li>
+<p>查看当前工作目录  </p>
+<ul>
+<li>pwd  </li>
+</ul>
+</li>
+<li>
+<p>改变当前目录  </p>
+<ul>
+<li>cd  <ul>
+<li>格式cd direction_name  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>显示当前目录或文件信息  </p>
+<ul>
+<li>
+<p>ls  </p>
+<ul>
+<li>
+<p>格式ls [-option] direction_name  </p>
+</li>
+<li>
+<p>option  </p>
+<ul>
+<li>
+<p>-a:显示所有文件和目录  </p>
+</li>
+<li>
+<p>-I:以长格式显示文件信息(同ll命令)  </p>
+</li>
+<li>
+<p>-r:将目录以反次序显示  </p>
+</li>
+<li>
+<p>-t:新的文件或目录显示在前  </p>
+</li>
+<li>
+<p>-R:若目录下有文件，则列出所有文件  </p>
+</li>
+<li>
+<p>etc  </p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>创建目录  </p>
+<ul>
+<li>
+<p>mkdir  </p>
+<ul>
+<li>
+<p>格式mkdir ［-p］ dir-name 1 dir-name 2 …  </p>
+</li>
+<li>
+<p>option  </p>
+<ul>
+<li>-p:创建一个目录树  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>删除空目录  </p>
+<ul>
+<li>
+<p>rmdir  </p>
+<ul>
+<li>
+<p>格式rmdir [-p] dir-name  </p>
+</li>
+<li>
+<p>option  </p>
+<ul>
+<li>-p:若子目录删除后，该目录为空，则一并删除  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>文件管理命令  </p>
+<ul>
+<li>
+<p>删除文件或目录  </p>
+<ul>
+<li>
+<p>rm  </p>
+<ul>
+<li>格式rm [-option] 文件或目录  </li>
+</ul>
+</li>
+<li>
+<p>option  </p>
+<ul>
+<li>
+<p>-r或-R:将指定目录下所有文件及子目录一并处理  </p>
+</li>
+<li>
+<p>-f:强制删除文件或目录  </p>
+</li>
+<li>
+<p>-i:删除文件或目录前先询问用户  </p>
+</li>
+<li>
+<p>-v:显示指令执行过程  </p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>移动文件或重命名  </p>
+<ul>
+<li>
+<p>mv  </p>
+<ul>
+<li>
+<p>格式mv [-option] 源文件或目录 目标文件或目录  </p>
+</li>
+<li>
+<p>option  </p>
+<ul>
+<li>
+<p>-b:若覆盖文件，则覆盖前先备份  </p>
+</li>
+<li>
+<p>-v:执行时显示过程  </p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>文件复制  </p>
+<ul>
+<li>
+<p>cp  </p>
+<ul>
+<li>
+<p>格式cp [-option] 源文件或目录 目标文件或目录  </p>
+</li>
+<li>
+<p>option  </p>
+<ul>
+<li>
+<p>-a:通常在复制目录时使用。它保留链接、文件属性，并递归的复制目录，作用相当于-dpr组合  </p>
+</li>
+<li>
+<p>-d:复制时保留链接  </p>
+</li>
+<li>
+<p>-f:删除已存在的目标文件而不显示  </p>
+</li>
+<li>
+<p>-i:复制前询问用户  </p>
+</li>
+<li>
+<p>-p:除复制文件外，还将修改时间和访问权限也复制到文件中  </p>
+</li>
+<li>
+<p>-r:若给出的源文件是目录，则递归复制该目录下所有子目录和文件，此时目标必须是目录  </p>
+</li>
+<li>
+<p>注意！！目录不能复制到目录本身  </p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>打包解压  </p>
+<ul>
+<li>
+<p>tar  </p>
+<ul>
+<li>
+<p>格式:tar [-option] 名字.tar 被打包的文件或目录  </p>
+</li>
+<li>
+<p>option  </p>
+<ul>
+<li>
+<p>-c:生成档案文件，创建打包文件  </p>
+</li>
+<li>
+<p>-v:显示执行过程  </p>
+</li>
+<li>
+<p>-f:指定档案文件名称，f 后面一定是 .tar 文件，所以必须放选项最后  </p>
+</li>
+<li>
+<p>-x:解开方案文件  </p>
+</li>
+<li>
+<p>-z:调用gzip,对打包文件进行压缩，生成.gz  </p>
+</li>
+<li>
+<p>tar -zxvf 打包文件.tar.gz -C 目标路径  </p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>修改权限命令  </p>
+<ul>
+<li>
+<p>chmod  </p>
+<ul>
+<li>
+<p>格式chmod [-option] mode filename  </p>
+</li>
+<li>
+<p>option  </p>
+<ul>
+<li>
+<p>-c:若文件权限确实更改，则显示更改动作  </p>
+</li>
+<li>
+<p>-f:若该文件权限无法更改，则不显示错误信息  </p>
+</li>
+<li>
+<p>-v:显示权限更改的详细信息  </p>
+</li>
+<li>
+<p>-R:对当前目录下所有文件与子目录进行相同的权限变更  </p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>修改所有者  </p>
+<ul>
+<li>
+<p>chown  </p>
+<ul>
+<li>
+<p>格式chown [-option] 账号名称 文件或目录  </p>
+</li>
+<li>
+<p>chown [-option] 账号名称:组名称 文件或目录  </p>
+</li>
+<li>
+<p>option  </p>
+<ul>
+<li>-R:递归变更，即连同次目录下的所有文件(夹)都要变更  </li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>修改用户组  </p>
+<ul>
+<li>chgrp  <ul>
+<li>格式chgrp [-options] [群组名] [文档路径]  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>查找文件  </p>
+<ul>
+<li>find  <ul>
+<li>
+<p>格式find pathname -options [-print-exec-ok…]  </p>
+<ul>
+<li>
+<p>pathname:若查目录路径  </p>
+</li>
+<li>
+<p>print:将匹配的文件匹配到标准输出  </p>
+</li>
+<li>
+<p>exec:将匹配的文件执行该参数所给出的Shell命令，执行每个命令都会询问用户是否执行  </p>
+</li>
+<li>
+<p>常用选项  </p>
+<ul>
+<li>
+<p>-name:按名字查  </p>
+</li>
+<li>
+<p>-mtime -n +n:按更改时间查，+n n天以前，-n n天以内  </p>
+</li>
+<li>
+<p>-depth:先查当前目录，再子目录  </p>
+</li>
+<li>
+<p>etc  </p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>查询显示包含指定字符的行  </p>
+<ul>
+<li>
+<p>grep  </p>
+<ul>
+<li>
+<p>格式grep [-option] 查询条件 目标文件  </p>
+</li>
+<li>
+<p>option  </p>
+<ul>
+<li>
+<p>-i:查找时忽略大小写  </p>
+</li>
+<li>
+<p>-v:查找不符合条件行  </p>
+</li>
+</ul>
+</li>
+<li>
+<p>查找条件  </p>
+<ul>
+<li>
+<p>"^…":以什么开头  </p>
+</li>
+<li>
+<p>"…$"：以什么结尾  </p>
+</li>
+<li>
+<p>"^$":空行  </p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>显示文件类型  </p>
+<ul>
+<li>
+<p>file  </p>
+<ul>
+<li>
+<p>格式file [-optoin] 文件名  </p>
+</li>
+<li>
+<p>option  </p>
+<ul>
+<li>
+<p>-b:显示文件类型，但不显示名字  </p>
+</li>
+<li>
+<p>-c:显示指令执行过程  </p>
+</li>
+<li>
+<p>-v:显示版本信息  </p>
+</li>
+<li>
+<p>-z:尝试解读压缩文件内容  </p>
+</li>
+<li>
+<p>-L:直接显示符号所链接的文件类型  </p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>命令 ——help</p>
+</li>
+</ul>
+</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../framebuffer%E6%A1%86%E6%9E%B6%E4%B8%8BSPI%E5%B1%8F%E7%9A%84%E9%A9%B1%E5%8A%A8%E7%A4%BA%E4%BE%8B/" class="btn btn-neutral float-left" title="framebuffer框架下SPI屏的驱动示例"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../%E5%B8%B8%E8%A7%81repo%26git%E6%93%8D%E4%BD%9C/" class="btn btn-neutral float-right" title="常见repo&git操作">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../framebuffer%E6%A1%86%E6%9E%B6%E4%B8%8BSPI%E5%B1%8F%E7%9A%84%E9%A9%B1%E5%8A%A8%E7%A4%BA%E4%BE%8B/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../%E5%B8%B8%E8%A7%81repo%26git%E6%93%8D%E4%BD%9C/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

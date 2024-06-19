@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>C++内存布局 - My Docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "C++\u5185\u5b58\u5e03\u5c40";
+        var mkdocs_page_input_path = "C++\u5185\u5b58\u5e03\u5c40.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Welcome to MkDocs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../2024-01-16/">2024 01 16</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">C++内存布局</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#11">1.1 无虚函数</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_2">布局：</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#12">1.2 有虚函数</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#_3">布局：</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Freertos%20API/">Freertos API</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../GCC%E7%BC%96%E8%AF%91%E5%99%A8%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/">GCC编译器使用记录</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8%E4%B8%AD%E6%96%AD%E4%BD%BF%E7%94%A8/">Linux驱动中断使用</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../NFS%E7%9A%84%E6%90%AD%E5%BB%BA/">NFS的搭建</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Samba%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/">Samba使用记录</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Vim%E4%BD%BF%E7%94%A8/">Vim使用</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../framebuffer%E6%A1%86%E6%9E%B6%E4%B8%8BSPI%E5%B1%8F%E7%9A%84%E9%A9%B1%E5%8A%A8%E7%A4%BA%E4%BE%8B/">framebuffer框架下SPI屏的驱动示例</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Linux常用命令</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../%E5%B8%B8%E8%A7%81repo%26git%E6%93%8D%E4%BD%9C/">常见repo&git操作</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../%E5%BC%82%E6%AD%A5IO/">select</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../%E6%89%93%E5%BC%80%E3%80%81%E8%AF%BB%E3%80%81%E5%86%99%E5%87%BD%E6%95%B0/">系统调用（linux）</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../%E6%9D%82%E9%A1%B9/">SSH服务的开启</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Linux驱动</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/Framebuffer%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/">Framebuffer驱动框架</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/Linux%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/">1、 框架模板</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/Platform%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/">Platform驱动框架</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/SPI%26%26IIC%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/">SPI&&IIC驱动框架</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/%E5%B8%B8%E8%A7%81%E7%9A%84OF%E5%87%BD%E6%95%B0%E8%AE%B0%E5%BD%95/">常见的OF函数记录</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/%E8%AE%BE%E5%A4%87%E6%A0%91%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%85%B6%E8%AF%AD%E6%B3%95/">设备树介绍及其语法</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">C++内存布局</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <p>Visual Studio：先选择左侧的C/C++-&gt;命令行，然后在其他选项这里写上/d1 reportAllClassLayout，它可以看到所有相关类的内存布局，如果写上/d1 reportSingleClassLayoutXXX（XXX为类名），则只会打出指定类XXX的内存布局</p>
+<h1 id="_1">一、无继承</h1>
+<h2 id="11">1.1 无虚函数</h2>
+<pre><code>class Base
+{
+private:
+
+    char c_a;
+
+    static char c_b;
+
+    int i_a;
+
+    static int i_b;
+
+    float f_a;
+
+    static float f_b;
+
+    double d_a;
+
+public:
+
+    void fun_1() {}
+
+};
+</code></pre>
+<h3 id="_2">布局：</h3>
+<pre><code>1&gt;class Base size(24):
+
+1&gt; +---
+
+1&gt; 0 | c_a
+
+1&gt;   | &lt;alignment member&gt; (size=3)
+
+1&gt; 4 | i_a
+
+1&gt; 8 | f_a
+
+1&gt;   | &lt;alignment member&gt; (size=4)
+
+1&gt;16 | d_a
+
+1&gt; +---
+</code></pre>
+<p>* 普通的变量 ：是要占用内存的，但是要注意对齐原则</p>
+<ul>
+<li>
+<p>static修饰的静态变量 ：不占用内容，原因是编译器将其放在全局变量区</p>
+</li>
+<li>
+<p>成员函数不占用具体类对象内存空间，成员函数存在代码区</p>
+</li>
+<li>
+<p>数据成员的访问级别并不影响其在内存的排布和大小，均是按照声明的顺序在内存中有序排布，并适当对齐</p>
+</li>
+</ul>
+<h2 id="12">1.2 有虚函数</h2>
+<pre><code>class Base
+
+{
+private:
+
+    char c_a;
+
+    static char c_b;
+
+    int i_a;
+
+    static int i_b;
+
+    float f_a;
+
+    static float f_b;
+
+    double d_a;
+
+public:
+
+    void fun_1() {}
+
+    virtual void vfun_1() {}
+
+    virtual void vfun_2() {}
+
+};
+</code></pre>
+<h3 id="_3">布局：</h3>
+<pre><code>1&gt;class Base size(32):
+
+1&gt; +---
+
+1&gt; 0 | {vfptr}
+
+1&gt; 8 | c_a
+
+1&gt;   | &lt;alignment member&gt; (size=3)
+
+1&gt;12 | i_a
+
+1&gt;16 | f_a
+
+1&gt;   | &lt;alignment member&gt; (size=4)
+
+1&gt;24 | d_a
+
+1&gt; +---
+
+1&gt;Base::$vftable@:
+
+1&gt; | &amp;Base_meta
+
+1&gt; |  0
+
+1&gt; 0 | &amp;Base::vfun_1
+
+1&gt; 1 | &amp;Base::vfun_2
+
+1&gt;Base::vfun_1 this adjustor: 0
+
+1&gt;Base::vfun_2 this adjustor: 0
+
+</code></pre>
+<h1 id="_4">二、单一继承</h1>
+<h2 id="21">2.1 无虚函数</h2>
+<pre><code>class Base
+
+{
+
+private:
+
+    char c_a;
+
+    static char c_b;
+
+    int i_a;
+
+    static int i_b;
+
+    float f_a;
+
+    static float f_b;
+
+    double d_a;
+
+public:
+
+    void fun_1() {}
+
+};
+
+//Derived1类
+class Derived1 : public Base
+{
+
+    char c_b;
+
+public:
+
+    void fun_d1() {}
+
+};
+
+//Derived2类
+class Derived2 : public Derived1
+{
+
+    double d_b;
+
+public:
+
+    void fun_d2() {}
+
+};
+</code></pre>
+<h3 id="_5">布局：</h3>
+<pre><code>1&gt;class Base size(24):
+
+1&gt; +---
+
+1&gt; 0 | c_a
+
+1&gt;   | &lt;alignment member&gt; (size=3)
+
+1&gt; 4 | i_a
+
+1&gt; 8 | f_a
+
+1&gt;   | &lt;alignment member&gt; (size=4)
+
+1&gt;16 | d_a
+
+1&gt; +---
+
+1&gt;class Derived1 size(32):
+
+1&gt; +---
+
+1&gt; 0 | +--- (base class Base)
+
+1&gt; 0 | | c_a
+
+1&gt;   | | &lt;alignment member&gt; (size=3)
+
+1&gt; 4 | | i_a
+
+1&gt; 8 | | f_a
+
+1&gt;   | | &lt;alignment member&gt; (size=4)
+
+1&gt;16 | | d_a
+
+1&gt; | +---
+
+1&gt;24 | c_b
+
+1&gt;   | &lt;alignment member&gt; (size=7)
+
+1&gt; +---
+
+1&gt;class Derived2 size(40):
+
+1&gt; +---
+
+1&gt; 0 | +--- (base class Derived1)
+
+1&gt; 0 | | +--- (base class Base)
+
+1&gt; 0 | | | c_a
+
+1&gt;   | | | &lt;alignment member&gt; (size=3)
+
+1&gt; 4 | | | i_a
+
+1&gt; 8 | | | f_a
+
+1&gt;   | | | &lt;alignment member&gt; (size=4)
+
+1&gt;16 | | | d_a
+
+1&gt; | | +---
+
+1&gt;24 | | c_b
+
+1&gt;   | | &lt;alignment member&gt; (size=7)
+
+1&gt; | +---
+
+1&gt;32 | d_b
+
+1&gt; +---
+</code></pre>
+<ul>
+<li>
+<p>每个派生类中起始位置都是<strong>Base class subobjectj基类子对象</strong></p>
+</li>
+<li>
+<p>内存空间会按照类的继承顺序(父类到子类)和字段的声明顺序布局</p>
+</li>
+</ul>
+<h2 id="22">2.2 有虚函数</h2>
+<pre><code>class Base
+{
+private:
+    char c_a;
+    static char c_b;
+    int i_a;
+    static int i_b;
+    float f_a;
+    static float f_b;
+    double d_a;
+public:
+    virtual void fun_1() {}
+    virtual void fun_2() {}
+};
+
+//Derived1类
+class Derived1 : public Base
+{
+    char c_b;
+
+public:
+    virtual void fun_d1() {}
+    void fun_2() {}
+};
+
+//Derived2类
+class Derived2 : public Derived1
+{
+    double d_b;
+
+public:
+    virtual void fun_d2() {}
+};
+</code></pre>
+<h3 id="_6">布局</h3>
+<pre><code>1&gt;class Base    size(32):
+1&gt;  +---
+1&gt; 0    | {vfptr}
+1&gt; 8    | c_a
+1&gt;      | &lt;alignment member&gt; (size=3)
+1&gt;12    | i_a
+1&gt;16    | f_a
+1&gt;      | &lt;alignment member&gt; (size=4)
+1&gt;24    | d_a
+1&gt;  +---
+1&gt;Base::$vftable@:
+1&gt;  | &amp;Base_meta
+1&gt;  |  0
+1&gt; 0    | &amp;Base::fun_1
+1&gt; 1    | &amp;Base::fun_2
+1&gt;Base::fun_1 this adjustor: 0
+1&gt;Base::fun_2 this adjustor: 0
+1&gt;class Derived1    size(40):
+1&gt;  +---
+1&gt; 0    | +--- (base class Base)
+1&gt; 0    | | {vfptr}
+1&gt; 8    | | c_a
+1&gt;      | | &lt;alignment member&gt; (size=3)
+1&gt;12    | | i_a
+1&gt;16    | | f_a
+1&gt;      | | &lt;alignment member&gt; (size=4)
+1&gt;24    | | d_a
+1&gt;  | +---
+1&gt;32    | c_b
+1&gt;      | &lt;alignment member&gt; (size=7)
+1&gt;  +---
+1&gt;Derived1::$vftable@:
+1&gt;  | &amp;Derived1_meta
+1&gt;  |  0
+1&gt; 0    | &amp;Base::fun_1
+1&gt; 1    | &amp;Derived1::fun_2
+1&gt; 2    | &amp;Derived1::fun_d1
+1&gt;Derived1::fun_d1 this adjustor: 0
+1&gt;Derived1::fun_2 this adjustor: 0
+1&gt;class Derived2    size(48):
+1&gt;  +---
+1&gt; 0    | +--- (base class Derived1)
+1&gt; 0    | | +--- (base class Base)
+1&gt; 0    | | | {vfptr}
+1&gt; 8    | | | c_a
+1&gt;      | | | &lt;alignment member&gt; (size=3)
+1&gt;12    | | | i_a
+1&gt;16    | | | f_a
+1&gt;      | | | &lt;alignment member&gt; (size=4)
+1&gt;24    | | | d_a
+1&gt;  | | +---
+1&gt;32    | | c_b
+1&gt;      | | &lt;alignment member&gt; (size=7)
+1&gt;  | +---
+1&gt;40    | d_b
+1&gt;  +---
+1&gt;Derived2::$vftable@:
+1&gt;  | &amp;Derived2_meta
+1&gt;  |  0
+1&gt; 0    | &amp;Base::fun_1
+1&gt; 1    | &amp;Derived1::fun_2
+1&gt; 2    | &amp;Derived1::fun_d1
+1&gt; 3    | &amp;Derived2::fun_d2
+</code></pre>
+<h3 id="_7">三、多重继承</h3>
+<pre><code>class A
+{
+private:
+    char c_a;
+    static char c_b;
+    int i_a;
+    static int i_b;
+    float f_a;
+    static float f_b;
+    double d_a;
+public:
+    void fun_A() {}
+    virtual void vfun_A() {}
+    virtual ~A() {}
+};
+
+class B
+{
+    char c_b;
+
+public:
+    void fun_B() {}
+    virtual void vfun_B() {}
+    virtual ~B() {}
+};
+
+class C : public A, public B
+{
+    double d_b;
+
+public:
+    void fun_C() {}
+    virtual void vfun_C() {}
+    virtual ~C() {}
+};
+</code></pre>
+<h2 id="_8">布局</h2>
+<pre><code>1&gt;class A   size(32):
+1&gt;  +---
+1&gt; 0    | {vfptr}
+1&gt; 8    | c_a
+1&gt;      | &lt;alignment member&gt; (size=3)
+1&gt;12    | i_a
+1&gt;16    | f_a
+1&gt;      | &lt;alignment member&gt; (size=4)
+1&gt;24    | d_a
+1&gt;  +---
+1&gt;A::$vftable@:
+1&gt;  | &amp;A_meta
+1&gt;  |  0
+1&gt; 0    | &amp;A::vfun_A
+1&gt; 1    | &amp;A::{dtor}
+1&gt;A::vfun_A this adjustor: 0
+1&gt;A::{dtor} this adjustor: 0
+1&gt;A::__delDtor this adjustor: 0
+1&gt;A::__vecDelDtor this adjustor: 0
+1&gt;class B   size(16):
+1&gt;  +---
+1&gt; 0    | {vfptr}
+1&gt; 8    | c_b
+1&gt;      | &lt;alignment member&gt; (size=7)
+1&gt;  +---
+1&gt;B::$vftable@:
+1&gt;  | &amp;B_meta
+1&gt;  |  0
+1&gt; 0    | &amp;B::vfun_B
+1&gt; 1    | &amp;B::{dtor}
+1&gt;B::vfun_B this adjustor: 0
+1&gt;B::{dtor} this adjustor: 0
+1&gt;B::__delDtor this adjustor: 0
+1&gt;B::__vecDelDtor this adjustor: 0
+1&gt;class C   size(56):
+1&gt;  +---
+1&gt; 0    | +--- (base class A)
+1&gt; 0    | | {vfptr}
+1&gt; 8    | | c_a
+1&gt;      | | &lt;alignment member&gt; (size=3)
+1&gt;12    | | i_a
+1&gt;16    | | f_a
+1&gt;      | | &lt;alignment member&gt; (size=4)
+1&gt;24    | | d_a
+1&gt;  | +---
+1&gt;32    | +--- (base class B)
+1&gt;32    | | {vfptr}
+1&gt;40    | | c_b
+1&gt;      | | &lt;alignment member&gt; (size=7)
+1&gt;  | +---
+1&gt;48    | d_b
+1&gt;  +---
+1&gt;C::$vftable@A@:
+1&gt;  | &amp;C_meta
+1&gt;  |  0
+1&gt; 0    | &amp;A::vfun_A
+1&gt; 1    | &amp;C::{dtor}
+1&gt; 2    | &amp;C::vfun_C
+1&gt;C::$vftable@B@:
+1&gt;  | -32
+1&gt; 0    | &amp;B::vfun_B
+1&gt; 1    | &amp;thunk: this-=32; goto C::{dtor}
+1&gt;C::vfun_C this adjustor: 0
+1&gt;C::{dtor} this adjustor: 0
+1&gt;C::__delDtor this adjustor: 0
+1&gt;C::__vecDelDtor this adjustor: 0
+</code></pre>
+<ul>
+<li>每个包含虚函数的父类都会有自己的虚函数表，并且按照继承顺序布局(虚表指针+字段）；</li>
+<li>如果子类重写父类虚函数，都会在每一个相应的虚函数表中更新相应地址；</li>
+<li>如果子类有自己的新定义的虚函数或者非虚成员函数，也会加到第一个虚函数表的后面。</li>
+</ul>
+<h1 id="_9">四、菱形继承</h1>
+<p>菱形继承：类B和C均继承自类A，类D同时继承类B和C</p>
+<pre><code>class A
+{
+private:
+    char c_a;
+    int i_a;
+    float f_a;
+    double d_a;
+public:
+    virtual ~A() {}
+};
+
+class B : public A
+{
+    int i_b;
+
+public:
+    virtual ~B() {}
+};
+
+class C : public A
+{
+    int i_c;
+
+public:
+    virtual ~C() {}
+};
+
+class D : public B, public C
+{
+    int i_d;
+
+public:
+    virtual ~D() {}
+};
+</code></pre>
+<h2 id="_10">布局</h2>
+<pre><code>1&gt;class A   size(32):
+1&gt;  +---
+1&gt; 0    | {vfptr}
+1&gt; 8    | c_a
+1&gt;      | &lt;alignment member&gt; (size=3)
+1&gt;12    | i_a
+1&gt;16    | f_a
+1&gt;      | &lt;alignment member&gt; (size=4)
+1&gt;24    | d_a
+1&gt;  +---
+1&gt;A::$vftable@:
+1&gt;  | &amp;A_meta
+1&gt;  |  0
+1&gt; 0    | &amp;A::{dtor}
+1&gt;A::{dtor} this adjustor: 0
+1&gt;A::__delDtor this adjustor: 0
+1&gt;A::__vecDelDtor this adjustor: 0
+1&gt;class B   size(40):
+1&gt;  +---
+1&gt; 0    | +--- (base class A)
+1&gt; 0    | | {vfptr}
+1&gt; 8    | | c_a
+1&gt;      | | &lt;alignment member&gt; (size=3)
+1&gt;12    | | i_a
+1&gt;16    | | f_a
+1&gt;      | | &lt;alignment member&gt; (size=4)
+1&gt;24    | | d_a
+1&gt;  | +---
+1&gt;32    | i_b
+1&gt;      | &lt;alignment member&gt; (size=4)
+1&gt;  +---
+1&gt;B::$vftable@:
+1&gt;  | &amp;B_meta
+1&gt;  |  0
+1&gt; 0    | &amp;B::{dtor}
+1&gt;B::{dtor} this adjustor: 0
+1&gt;B::__delDtor this adjustor: 0
+1&gt;B::__vecDelDtor this adjustor: 0
+1&gt;class C   size(40):
+1&gt;  +---
+1&gt; 0    | +--- (base class A)
+1&gt; 0    | | {vfptr}
+1&gt; 8    | | c_a
+1&gt;      | | &lt;alignment member&gt; (size=3)
+1&gt;12    | | i_a
+1&gt;16    | | f_a
+1&gt;      | | &lt;alignment member&gt; (size=4)
+1&gt;24    | | d_a
+1&gt;  | +---
+1&gt;32    | i_c
+1&gt;      | &lt;alignment member&gt; (size=4)
+1&gt;  +---
+1&gt;C::$vftable@:
+1&gt;  | &amp;C_meta
+1&gt;  |  0
+1&gt; 0    | &amp;C::{dtor}
+1&gt;C::{dtor} this adjustor: 0
+1&gt;C::__delDtor this adjustor: 0
+1&gt;C::__vecDelDtor this adjustor: 0
+1&gt;class D   size(88):
+1&gt;  +---
+1&gt; 0    | +--- (base class B)
+1&gt; 0    | | +--- (base class A)
+1&gt; 0    | | | {vfptr}
+1&gt; 8    | | | c_a
+1&gt;      | | | &lt;alignment member&gt; (size=3)
+1&gt;12    | | | i_a
+1&gt;16    | | | f_a
+1&gt;      | | | &lt;alignment member&gt; (size=4)
+1&gt;24    | | | d_a
+1&gt;  | | +---
+1&gt;32    | | i_b
+1&gt;      | | &lt;alignment member&gt; (size=4)
+1&gt;  | +---
+1&gt;40    | +--- (base class C)
+1&gt;40    | | +--- (base class A)
+1&gt;40    | | | {vfptr}
+1&gt;48    | | | c_a
+1&gt;      | | | &lt;alignment member&gt; (size=3)
+1&gt;52    | | | i_a
+1&gt;56    | | | f_a
+1&gt;      | | | &lt;alignment member&gt; (size=4)
+1&gt;64    | | | d_a
+1&gt;  | | +---
+1&gt;72    | | i_c
+1&gt;      | | &lt;alignment member&gt; (size=4)
+1&gt;  | +---
+1&gt;80    | i_d
+1&gt;      | &lt;alignment member&gt; (size=4)
+1&gt;  +---
+1&gt;D::$vftable@B@:
+1&gt;  | &amp;D_meta
+1&gt;  |  0
+1&gt; 0    | &amp;D::{dtor}
+1&gt;D::$vftable@C@:
+1&gt;  | -40
+1&gt; 0    | &amp;thunk: this-=40; goto D::{dtor}
+1&gt;D::{dtor} this adjustor: 0
+1&gt;D::__delDtor this adjustor: 0
+1&gt;D::__vecDelDtor this adjustor: 0
+</code></pre>
+<p>如上class D，subobject A有两份，所以A的data member也存了两份，但实际上对于D而言，只需要有一份subobject A即够了。菱形继承不仅浪费存储空间，而且造成了数据访问的二义性。解决办法：虚继承</p>
+<h1 id="_11">五、虚继承</h1>
+<pre><code>class A
+{
+private:
+    char c_a;
+    int i_a;
+    float f_a;
+    double d_a;
+public:
+    virtual ~A() {}
+};
+
+class B : virtual public A
+{
+    int i_b;
+
+public:
+    virtual ~B() {}
+};
+
+class C : virtual public A
+{
+    int i_c;
+
+public:
+    virtual ~C() {}
+};
+
+class D : public B, public C
+{
+    int i_d;
+
+public:
+    virtual ~D() {}
+};
+</code></pre>
+<h2 id="_12">布局</h2>
+<pre><code>1&gt;class A   size(32):
+1&gt;  +---
+1&gt; 0    | {vfptr}
+1&gt; 8    | c_a
+1&gt;      | &lt;alignment member&gt; (size=3)
+1&gt;12    | i_a
+1&gt;16    | f_a
+1&gt;      | &lt;alignment member&gt; (size=4)
+1&gt;24    | d_a
+1&gt;  +---
+1&gt;A::$vftable@:
+1&gt;  | &amp;A_meta
+1&gt;  |  0
+1&gt; 0    | &amp;A::{dtor}
+1&gt;A::{dtor} this adjustor: 0
+1&gt;A::__delDtor this adjustor: 0
+1&gt;A::__vecDelDtor this adjustor: 0
+1&gt;class B   size(48):
+1&gt;  +---
+1&gt; 0    | {vbptr}
+1&gt; 8    | i_b
+1&gt;      | &lt;alignment member&gt; (size=4)
+1&gt;  +---
+1&gt;  +--- (virtual base A)
+1&gt;16    | {vfptr}
+1&gt;24    | c_a
+1&gt;      | &lt;alignment member&gt; (size=3)
+1&gt;28    | i_a
+1&gt;32    | f_a
+1&gt;      | &lt;alignment member&gt; (size=4)
+1&gt;40    | d_a
+1&gt;  +---
+1&gt;B::$vbtable@:
+1&gt; 0    | 0
+1&gt; 1    | 16 (Bd(B+0)A)
+1&gt;B::$vftable@:
+1&gt;  | -16
+1&gt; 0    | &amp;B::{dtor}
+1&gt;B::{dtor} this adjustor: 16
+1&gt;B::__delDtor this adjustor: 16
+1&gt;B::__vecDelDtor this adjustor: 16
+1&gt;vbi:     class  offset o.vbptr  o.vbte fVtorDisp
+1&gt;               A      16       0       4 0
+1&gt;class C   size(48):
+1&gt;  +---
+1&gt; 0    | {vbptr}
+1&gt; 8    | i_c
+1&gt;      | &lt;alignment member&gt; (size=4)
+1&gt;  +---
+1&gt;  +--- (virtual base A)
+1&gt;16    | {vfptr}
+1&gt;24    | c_a
+1&gt;      | &lt;alignment member&gt; (size=3)
+1&gt;28    | i_a
+1&gt;32    | f_a
+1&gt;      | &lt;alignment member&gt; (size=4)
+1&gt;40    | d_a
+1&gt;  +---
+1&gt;C::$vbtable@:
+1&gt; 0    | 0
+1&gt; 1    | 16 (Cd(C+0)A)
+1&gt;C::$vftable@:
+1&gt;  | -16
+1&gt; 0    | &amp;C::{dtor}
+1&gt;C::{dtor} this adjustor: 16
+1&gt;C::__delDtor this adjustor: 16
+1&gt;C::__vecDelDtor this adjustor: 16
+1&gt;vbi:     class  offset o.vbptr  o.vbte fVtorDisp
+1&gt;               A      16       0       4 0
+1&gt;class D   size(72):
+1&gt;  +---
+1&gt; 0    | +--- (base class B)
+1&gt; 0    | | {vbptr}
+1&gt; 8    | | i_b
+1&gt;      | | &lt;alignment member&gt; (size=4)
+1&gt;  | +---
+1&gt;16    | +--- (base class C)
+1&gt;16    | | {vbptr}
+1&gt;24    | | i_c
+1&gt;      | | &lt;alignment member&gt; (size=4)
+1&gt;  | +---
+1&gt;32    | i_d
+1&gt;      | &lt;alignment member&gt; (size=4)
+1&gt;  +---
+1&gt;  +--- (virtual base A)
+1&gt;40    | {vfptr}
+1&gt;48    | c_a
+1&gt;      | &lt;alignment member&gt; (size=3)
+1&gt;52    | i_a
+1&gt;56    | f_a
+1&gt;      | &lt;alignment member&gt; (size=4)
+1&gt;64    | d_a
+1&gt;  +---
+1&gt;D::$vbtable@B@:
+1&gt; 0    | 0
+1&gt; 1    | 40 (Dd(B+0)A)
+1&gt;D::$vbtable@C@:
+1&gt; 0    | 0
+1&gt; 1    | 24 (Dd(C+0)A)
+1&gt;D::$vftable@:
+1&gt;  | -40
+1&gt; 0    | &amp;D::{dtor}
+1&gt;D::{dtor} this adjustor: 40
+1&gt;D::__delDtor this adjustor: 40
+1&gt;D::__vecDelDtor this adjustor: 40
+1&gt;vbi:     class  offset o.vbptr  o.vbte fVtorDisp
+1&gt;               A      40       0       4 0
+</code></pre>
+<p>可以看到，class B中有两个虚指针： 第一个指向B自己的虚表（注意这里是vbptr而不是vfptr，是虚基类指针），第二个指向虚基类A的虚表 。而且， 从布局上看，class B的部分要放在前面，虚基类A的部分放在后面。在class B中虚基类A的成分相对内存起始处的偏移offset等于class B的大小（16字节）。C的内存布局和B类似。</p>
+<p>Class如果内含一个或多个virtual base subobjects，将被分割成两部分：一个不变区域和一个共享区域。不变区域中的数据，不管后继如何衍化，总有固定的offset（从object的开头算起），所以这一部分可以直接存取。而共享区域所表现的就是virtual base class subobject。这部分数据的位置会因为每次的派生操作而发生变化，所以它们只可以被间接存取。</p>
+<p>菱形/钻石继承，并采用了虚继承，则内存空间排列顺序为：各个父类(包含虚基类指针)、子类、公共基类(最上方的父类，包含虚函数指针)，并且各个父类不再拷贝公共基类中的数据成员。</p>
+<p>虚继承的实现原理是，编译器在派生类的对象中添加一个指针vbptr。vbptr指的是虚基类表指针（virtual base table pointer），该指针指向了一个虚基类表（virtual table），虚基表中记录了虚基类与本类的偏移地址；通过偏移地址，这样就找到了虚基类成员，而虚继承也不用像普通多继承那样维持着公共基类（虚基类）的两份同样的拷贝，节省了存储空间。</p>
+<p>仔细观察可以发现，<code>D::$vbtable@B@</code>中的偏移量是40，观察D的内存布局可以看到B类起始偏移量是0，而A类的偏移量是40，A相对D的偏移量是40；</p>
+<p>同理观察 <code>D::$vbtable@C@</code>中的偏移量是24，可以看到D内存布局中C类偏移量是16，A相对C的便宜就是26。</p>
+<p>综上验证了虚基表中记录了虚基类与本类的偏移地址</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../2024-01-16/" class="btn btn-neutral float-left" title="2024 01 16"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../Freertos%20API/" class="btn btn-neutral float-right" title="Freertos API">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../2024-01-16/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../Freertos%20API/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
