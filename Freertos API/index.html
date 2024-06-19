@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Freertos API - My Docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Freertos API";
+        var mkdocs_page_input_path = "Freertos API.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Welcome to MkDocs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../2024-01-16/">2024 01 16</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../C%2B%2B%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/">C++内存布局</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Freertos API</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../GCC%E7%BC%96%E8%AF%91%E5%99%A8%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/">GCC编译器使用记录</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8%E4%B8%AD%E6%96%AD%E4%BD%BF%E7%94%A8/">Linux驱动中断使用</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../NFS%E7%9A%84%E6%90%AD%E5%BB%BA/">NFS的搭建</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Samba%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/">Samba使用记录</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Vim%E4%BD%BF%E7%94%A8/">Vim使用</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../framebuffer%E6%A1%86%E6%9E%B6%E4%B8%8BSPI%E5%B1%8F%E7%9A%84%E9%A9%B1%E5%8A%A8%E7%A4%BA%E4%BE%8B/">framebuffer框架下SPI屏的驱动示例</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Linux常用命令</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../%E5%B8%B8%E8%A7%81repo%26git%E6%93%8D%E4%BD%9C/">常见repo&git操作</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../%E5%BC%82%E6%AD%A5IO/">select</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../%E6%89%93%E5%BC%80%E3%80%81%E8%AF%BB%E3%80%81%E5%86%99%E5%87%BD%E6%95%B0/">系统调用（linux）</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../%E6%9D%82%E9%A1%B9/">SSH服务的开启</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Linux驱动</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/Framebuffer%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/">Framebuffer驱动框架</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/Linux%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/">1、 框架模板</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/Platform%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/">Platform驱动框架</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/SPI%26%26IIC%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/">SPI&&IIC驱动框架</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/%E5%B8%B8%E8%A7%81%E7%9A%84OF%E5%87%BD%E6%95%B0%E8%AE%B0%E5%BD%95/">常见的OF函数记录</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/%E8%AE%BE%E5%A4%87%E6%A0%91%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%85%B6%E8%AF%AD%E6%B3%95/">设备树介绍及其语法</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Freertos API</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <ul>
+<li>
+<p>FreeRTOS  </p>
+<ul>
+<li>
+<p>任务状态  </p>
+<ul>
+<li>
+<p>运行态  </p>
+</li>
+<li>
+<p>就绪态  </p>
+</li>
+<li>
+<p>阻塞 态  </p>
+</li>
+<li>
+<p>挂起态  </p>
+</li>
+</ul>
+</li>
+<li>
+<p>任务相关API  </p>
+<ul>
+<li>
+<p>任务创建（动态方法xTaskCreate()、静态方法xTaskCreateStatic()）  </p>
+</li>
+<li>
+<p>任务删除（xTaskDelete()）  </p>
+</li>
+<li>
+<p>查询任务优先级(uxTaskPriorityGet())  </p>
+</li>
+<li>
+<p>改变任务优先级（vTaskPrioritySet()）  </p>
+</li>
+</ul>
+</li>
+<li>
+<p>延时函数API  </p>
+<ul>
+<li>
+<p>相对延时（vTaskDelay()）  </p>
+</li>
+<li>
+<p>绝对延时（vTaskDelayUntil()）  </p>
+</li>
+</ul>
+</li>
+<li>
+<p>队列相关API  </p>
+<ul>
+<li>
+<p>队列创建（xQueueCreate()）  </p>
+</li>
+<li>
+<p>任务级入队函数  </p>
+<ul>
+<li>
+<p>后向入队（xQueueSend()、xQueueSendToBack()）  </p>
+</li>
+<li>
+<p>前向入队（xQueuendSendToFront()）  </p>
+</li>
+<li>
+<p>带复写功能入队（xQueueOverwrite()）  </p>
+</li>
+</ul>
+</li>
+<li>
+<p>中断级入队函数  </p>
+<ul>
+<li>
+<p>xQueueSendFromISR()  </p>
+</li>
+<li>
+<p>xQueueSendToBackFromISR()  </p>
+</li>
+<li>
+<p>xQueueSendToFrontFromISR()  </p>
+</li>
+<li>
+<p>xQueueOverwriteFromISR()  </p>
+</li>
+</ul>
+</li>
+<li>
+<p>任务级出队函数  </p>
+<ul>
+<li>
+<p>读取队列信息，读取后删除（xQueueReceive()）  </p>
+</li>
+<li>
+<p>读取队列信息，读取后不删除（xQueuePeek()）  </p>
+</li>
+</ul>
+</li>
+<li>
+<p>中断级出队函数  </p>
+<ul>
+<li>
+<p>xQueueReceviceFromISR()  </p>
+</li>
+<li>
+<p>xQueuePeekFromISR()  </p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>信号量相关API  </p>
+<ul>
+<li>
+<p>创建二值信号量（BinarySemaphore）  </p>
+<ul>
+<li>
+<p>静态创建二值信号量（xSemaphoreCreate()）  </p>
+</li>
+<li>
+<p>动态创建二值信号量（xSemaphoreStatic()）  </p>
+</li>
+</ul>
+</li>
+<li>
+<p>释放信号量  </p>
+<ul>
+<li>
+<p>任务级释放（xSemaphoreGive()）  </p>
+</li>
+<li>
+<p>中断级释放（xSemaphoreGiveFromISR()）  </p>
+</li>
+</ul>
+</li>
+<li>
+<p>获取信号量  </p>
+<ul>
+<li>
+<p>任务级获取（xSemaphoreTake()）  </p>
+</li>
+<li>
+<p>中断级获取（xSemaphoreTakeFromISR()）  </p>
+</li>
+</ul>
+</li>
+<li>
+<p>创建计数型信号量  </p>
+<ul>
+<li>
+<p>动态创建（xSemaphoreCreateCounting()）  </p>
+</li>
+<li>
+<p>静态创建（xSemaphoreCreateCountingStatic()）  </p>
+</li>
+</ul>
+</li>
+<li>
+<p>创建互斥信号量  </p>
+<ul>
+<li>
+<p>动态创建（xSemaphoreCreateMutex()）  </p>
+</li>
+<li>
+<p>静态创建（xSemaphoreCreateMutexStatic()）  </p>
+</li>
+</ul>
+</li>
+<li>
+<p>创建递归互斥信号量  </p>
+<ul>
+<li>
+<p>动态创建（xSemaphoreCreateRecuisiveMutex()）  </p>
+</li>
+<li>
+<p>静态创建(xSemaphoreCreateRecursiveMutexStatic())  </p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>软件定时器相关API  </p>
+<ul>
+<li>
+<p>创建定时器  </p>
+<ul>
+<li>
+<p>动态创建（xTimerCreate()）  </p>
+</li>
+<li>
+<p>静态创建（xTimerCreateStatic()）  </p>
+</li>
+</ul>
+</li>
+<li>
+<p>复位定时器  </p>
+<ul>
+<li>
+<p>任务级复位（xTimerReset()）  </p>
+</li>
+<li>
+<p>中断级复位（xTimerResetFromISR()）  </p>
+</li>
+</ul>
+</li>
+<li>
+<p>开启定时器  </p>
+<ul>
+<li>
+<p>任务级开启（xTimerStart()）  </p>
+</li>
+<li>
+<p>中断级开启(xTimerStartFromISR())  </p>
+</li>
+</ul>
+</li>
+<li>
+<p>停止定时器  </p>
+<ul>
+<li>
+<p>任务级停止（xTimerStop()）  </p>
+</li>
+<li>
+<p>中断级停止(xTimerStopFromISR())  </p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>事件标志组相关API  </p>
+<ul>
+<li>
+<p>创建事件标志组  </p>
+<ul>
+<li>
+<p>动态创建（xEventGroupCreate()）  </p>
+</li>
+<li>
+<p>静态创建（xEventGroupCreateStatic()）  </p>
+</li>
+</ul>
+</li>
+<li>
+<p>设置事件位  </p>
+<ul>
+<li>
+<p>任务级清零（xEventGroupClearBits()）  </p>
+</li>
+<li>
+<p>任务级置位（xEventGroupSetBits()）  </p>
+</li>
+<li>
+<p>中断级清零（xEventGroupClearBitsFromISR()）  </p>
+</li>
+<li>
+<p>中断级置位（xEventGroupSetBitsFromISR()）  </p>
+</li>
+</ul>
+</li>
+<li>
+<p>获取事件标志组值  </p>
+<ul>
+<li>
+<p>任务级获取（xEventGroupGetBits()）  </p>
+</li>
+<li>
+<p>中断级获取（xEventGroupGetBitsFromISR()）  </p>
+</li>
+</ul>
+</li>
+<li>
+<p>等待指定事件标志组  </p>
+<ul>
+<li>xEventGroupWaitBits()  </li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>任务通知<br />
+    -</p>
+</li>
+</ul>
+</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../C%2B%2B%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/" class="btn btn-neutral float-left" title="C++内存布局"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../GCC%E7%BC%96%E8%AF%91%E5%99%A8%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/" class="btn btn-neutral float-right" title="GCC编译器使用记录">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../C%2B%2B%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../GCC%E7%BC%96%E8%AF%91%E5%99%A8%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>

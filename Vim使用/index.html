@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>Vim使用 - My Docs</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Vim\u4f7f\u7528";
+        var mkdocs_page_input_path = "Vim\u4f7f\u7528.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> My Docs
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Welcome to MkDocs</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../2024-01-16/">2024 01 16</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../C%2B%2B%E5%86%85%E5%AD%98%E5%B8%83%E5%B1%80/">C++内存布局</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Freertos%20API/">Freertos API</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../GCC%E7%BC%96%E8%AF%91%E5%99%A8%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/">GCC编译器使用记录</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8%E4%B8%AD%E6%96%AD%E4%BD%BF%E7%94%A8/">Linux驱动中断使用</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../NFS%E7%9A%84%E6%90%AD%E5%BB%BA/">NFS的搭建</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../Samba%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/">Samba使用记录</a>
+                </li>
+              </ul>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Vim使用</a>
+    <ul class="current">
+    </ul>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../framebuffer%E6%A1%86%E6%9E%B6%E4%B8%8BSPI%E5%B1%8F%E7%9A%84%E9%A9%B1%E5%8A%A8%E7%A4%BA%E4%BE%8B/">framebuffer框架下SPI屏的驱动示例</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../linux%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/">Linux常用命令</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../%E5%B8%B8%E8%A7%81repo%26git%E6%93%8D%E4%BD%9C/">常见repo&git操作</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../%E5%BC%82%E6%AD%A5IO/">select</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../%E6%89%93%E5%BC%80%E3%80%81%E8%AF%BB%E3%80%81%E5%86%99%E5%87%BD%E6%95%B0/">系统调用（linux）</a>
+                </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../%E6%9D%82%E9%A1%B9/">SSH服务的开启</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Linux驱动</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/Framebuffer%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/">Framebuffer驱动框架</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/Linux%E5%AD%97%E7%AC%A6%E8%AE%BE%E5%A4%87%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/">1、 框架模板</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/Platform%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/">Platform驱动框架</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/SPI%26%26IIC%E9%A9%B1%E5%8A%A8%E6%A1%86%E6%9E%B6/">SPI&&IIC驱动框架</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/%E5%B8%B8%E8%A7%81%E7%9A%84OF%E5%87%BD%E6%95%B0%E8%AE%B0%E5%BD%95/">常见的OF函数记录</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../Linux%E9%A9%B1%E5%8A%A8/%E8%AE%BE%E5%A4%87%E6%A0%91%E4%BB%8B%E7%BB%8D%E5%8F%8A%E5%85%B6%E8%AF%AD%E6%B3%95/">设备树介绍及其语法</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">My Docs</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Vim使用</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <ul>
+<li>vim模式  <ul>
+<li>
+<p>常用命令  </p>
+<ul>
+<li>
+<p>设置行号  </p>
+<ul>
+<li>:set nu  </li>
+</ul>
+</li>
+<li>
+<p>取消行号  </p>
+<ul>
+<li>:set nonu  </li>
+</ul>
+</li>
+<li>
+<p>跳到第一行  </p>
+<ul>
+<li>gg  </li>
+</ul>
+</li>
+<li>
+<p>跳到最后一行  </p>
+<ul>
+<li>G  </li>
+</ul>
+</li>
+<li>
+<p>跳到指定#行  </p>
+<ul>
+<li>
+<h1 id="gggg">gg或#G#G</h1>
+</li>
+</ul>
+</li>
+<li>
+<p>跳到行首  </p>
+<ul>
+<li>0或^  </li>
+</ul>
+</li>
+<li>
+<p>跳到行尾  </p>
+<ul>
+<li>$  </li>
+</ul>
+</li>
+<li>
+<p>删除单个字符  </p>
+<ul>
+<li>x或Del  </li>
+</ul>
+</li>
+<li>
+<p>删除一行  </p>
+<ul>
+<li>dd  </li>
+</ul>
+</li>
+<li>
+<p>删除从光标开始的#行  </p>
+<ul>
+<li>
+<h1 id="dd">dd</h1>
+</li>
+</ul>
+</li>
+<li>
+<p>删除从光标到行首的内容  </p>
+<ul>
+<li>d^  </li>
+</ul>
+</li>
+<li>
+<p>删除从光标到行尾的内容  </p>
+<ul>
+<li>d$  </li>
+</ul>
+</li>
+<li>
+<p>复制一行内容  </p>
+<ul>
+<li>yy  </li>
+</ul>
+</li>
+<li>
+<p>复制从光标开始的#行内容  </p>
+<ul>
+<li>
+<h1 id="yy">yy</h1>
+</li>
+</ul>
+</li>
+<li>
+<p>粘贴  </p>
+<ul>
+<li>
+<p>P粘贴到光标前一行  </p>
+</li>
+<li>
+<p>p从光标后开始粘贴  </p>
+</li>
+</ul>
+</li>
+<li>
+<p>查找内容  </p>
+<ul>
+<li>
+<p>/word从上而下查找文字word  </p>
+</li>
+<li>
+<p>?word从下而上查找文字word  </p>
+</li>
+<li>
+<p>n定位下一个查找内容  </p>
+</li>
+<li>
+<p>N定位上一个查找内容  </p>
+</li>
+</ul>
+</li>
+<li>
+<p>撤销操作  </p>
+<ul>
+<li>
+<p>u取消最近一次操作，多次按可恢复已进行的多次操作  </p>
+</li>
+<li>
+<p>U取消对当前行的所有操作  </p>
+</li>
+</ul>
+</li>
+<li>
+<p>查找替换  </p>
+<ul>
+<li>
+<p>:s /old/new 将当前行查询到的第一个old替换为new  </p>
+</li>
+<li>
+<p>:s /old/new/g 将当前行查找到的所有old都替换为new  </p>
+</li>
+<li>
+<p>:#,# s /old/new/g 将#,#范围内的old替换为new  </p>
+</li>
+<li>
+<p>:% s /old/new/g 将文本内所有的old替换为new  </p>
+</li>
+<li>
+<p>:% s /old/new/c 将文本内所有的old替换为new,每个替换东西要求用户确认  </p>
+</li>
+</ul>
+</li>
+<li>
+<p>退出与保存  </p>
+<ul>
+<li>
+<p>:w保存  </p>
+</li>
+<li>
+<p>:q未修改退出  </p>
+</li>
+<li>
+<p>:q!退出不保存操作  </p>
+</li>
+<li>
+<p>:wq或ZZ退出保存</p>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../Samba%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/" class="btn btn-neutral float-left" title="Samba使用记录"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../framebuffer%E6%A1%86%E6%9E%B6%E4%B8%8BSPI%E5%B1%8F%E7%9A%84%E9%A9%B1%E5%8A%A8%E7%A4%BA%E4%BE%8B/" class="btn btn-neutral float-right" title="framebuffer框架下SPI屏的驱动示例">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../Samba%E4%BD%BF%E7%94%A8%E8%AE%B0%E5%BD%95/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../framebuffer%E6%A1%86%E6%9E%B6%E4%B8%8BSPI%E5%B1%8F%E7%9A%84%E9%A9%B1%E5%8A%A8%E7%A4%BA%E4%BE%8B/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+      <script src="../search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
